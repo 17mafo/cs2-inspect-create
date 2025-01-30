@@ -48,7 +48,7 @@ const link = generateLink({
   ],
 });
 
-// retrun inspect link `steam://rungame/730/76561202255233023/+csgo_econ_action_preview%2000180720DA03280638FBEE88F90340B2026213080310021D00000000250000803F2D00000000503D5A64`
+// return inspect link `steam://rungame/730/76561202255233023/+csgo_econ_action_preview%2000180720DA03280638FBEE88F90340B2026213080310021D00000000250000803F2D00000000503D5A64`
 
 const hex = generateHex({
   defindex: 7,
