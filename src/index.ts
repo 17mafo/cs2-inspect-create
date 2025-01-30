@@ -41,13 +41,19 @@ const generateHex = ({
 }: CEconItemPreviewDataBlock): string => {
   const econ: CEconItemPreviewDataBlock = {
     ...props,
-    paintwear: floatToBytes(paintwear),
-    stickers: stickers.map((sticker) => ({
-      ...sticker,
-      offsetX: sticker.offsetX ?? 0,
-      offsetY: sticker.offsetY ?? 0,
-      rotations: sticker.rotation ?? 0,
-    })),
+    ...(paintwear !== 0.001 ? { paintwear: floatToBytes(paintwear) } : {}),
+    stickers: stickers.map((sticker) => {
+      const newSticker: any = {
+        slot: sticker.slot,
+        stickerId: sticker.stickerId,
+      };
+      if (sticker.wear && sticker.wear > 0) newSticker.wear = sticker.wear;
+      if (sticker.offsetX != 0) newSticker.offsetX = sticker.offsetX;
+      if (sticker.offsetY != 0) newSticker.offsetY = sticker.offsetY;
+      if (sticker.rotation != 0) newSticker.rotation = sticker.rotation;
+
+      return newSticker;
+    }),
   };
 
   let payload = CEconItemPreviewDataBlock.toBinary(econ);
